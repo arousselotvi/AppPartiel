@@ -24,6 +24,18 @@
         <activity
             android:name=".DisplayPOIAdapter"
             android:label="@string/title_activity_display_poiadapter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DetailPOI"
+            android:label="@string/title_activity_detail_poi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WebviewActivity"
+            android:label="@string/title_activity_webview"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RequestPOI"
+            android:label="@string/title_activity_request_poi"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
