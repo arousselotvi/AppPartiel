@@ -3,7 +3,7 @@ package com.example.antoinerousselot.apppartiel;
 public class Destination {
     private String type;
     private String title;
-    private String distance;
+    private Double distance;
     private String imageURL;
 
     public String getType() {
@@ -22,11 +22,11 @@ public class Destination {
         this.title = title;
     }
 
-    public String getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 
@@ -38,7 +38,7 @@ public class Destination {
         this.imageURL = imageURL;
     }
 
-    public Destination(String type, String title, String distance, String imageURL) {
+    public Destination(String type, String title, Double distance, String imageURL) {
         this.type = type;
         this.title = title;
         this.distance = distance;

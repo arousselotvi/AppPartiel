@@ -46,9 +46,15 @@ public class DisplayPOIActivity extends ListActivity {
     private void remplirBibliotheque(JSONArray myPlaces){
         maBibliotheque.clear();
         try{
+            Log.i(TAG,myPlaces.getJSONObject(0).getString("type") + maBibliotheque.toString());
             for (int i=0; i<myPlaces.length(); i++){
                 String myImageUrl= "";
-                if(myPlaces.getJSONObject(i).getString("type")=="POI"){
+                Double myDistance=0.0;
+                if(myPlaces.getJSONObject(i).getString("type").contains("POI")){
+                    Log.i(TAG,"POI" + maBibliotheque.toString());
+                    if (myPlaces.getJSONObject(i).has("distance")){
+                        myDistance= myPlaces.getJSONObject(i).getDouble("distance");
+                    }
                     if (myPlaces.getJSONObject(i).getString("media").length()!=0 && myPlaces.getJSONObject(i).getString("media")!= null) {
                         myImageUrl= myPlaces.getJSONObject(i).getString("media");
                     }
@@ -56,9 +62,13 @@ public class DisplayPOIActivity extends ListActivity {
                         myImageUrl = "https://static.thenounproject.com/png/628760-200.png";
                     }
                     maBibliotheque.add(new Destination(myPlaces.getJSONObject(i).getString("type"),myPlaces.getJSONObject(i).getString("display"),
-                            myPlaces.getJSONObject(i).getString("distance"), myImageUrl));
+                           myDistance, myImageUrl));
                 }
-                else if(myPlaces.getJSONObject(i).getString("type")=="RESTAURANT"){
+                else if(myPlaces.getJSONObject(i).getString("type").contains("RESTAURANT")){
+                    Log.i(TAG,"Restaurant" + maBibliotheque.toString());
+                    if (myPlaces.getJSONObject(i).has("distance")){
+                        myDistance= myPlaces.getJSONObject(i).getDouble("distance");
+                    }
                     if (myPlaces.getJSONObject(i).getString("media").length()!=0 && myPlaces.getJSONObject(i).getString("media")!= null) {
                         myImageUrl= myPlaces.getJSONObject(i).getString("media");
                     }
@@ -66,9 +76,13 @@ public class DisplayPOIActivity extends ListActivity {
                         myImageUrl = "https://static.thenounproject.com/png/628760-200.png";
                     }
                     maBibliotheque.add(new Destination(myPlaces.getJSONObject(i).getString("type"),myPlaces.getJSONObject(i).getString("display"),
-                            myPlaces.getJSONObject(i).getString("distance"), myImageUrl));
+                            myDistance, myImageUrl));
                 }
-                else if(myPlaces.getJSONObject(i).getString("type")=="HOTEL"){
+                else if(myPlaces.getJSONObject(i).getString("type").contains("HOTEL")){
+                    Log.i(TAG,"Hotel" + maBibliotheque.toString());
+                    if (myPlaces.getJSONObject(i).has("distance")){
+                        myDistance= myPlaces.getJSONObject(i).getDouble("distance");
+                    }
                     if (myPlaces.getJSONObject(i).getString("media").length()!=0 && myPlaces.getJSONObject(i).getString("media")!= null) {
                         myImageUrl= myPlaces.getJSONObject(i).getString("media");
                     }
@@ -76,9 +90,12 @@ public class DisplayPOIActivity extends ListActivity {
                         myImageUrl = "https://static.thenounproject.com/png/628760-200.png";
                     }
                     maBibliotheque.add(new Destination(myPlaces.getJSONObject(i).getString("type"),myPlaces.getJSONObject(i).getString("display"),
-                            myPlaces.getJSONObject(i).getString("distance"), myImageUrl));
+                            myDistance, myImageUrl));
                 }
-                else if(myPlaces.getJSONObject(i).getString("type")=="CITY"){
+                else if(myPlaces.getJSONObject(i).getString("type").contains("CITY")){
+                    if (myPlaces.getJSONObject(i).has("distance")){
+                        myDistance= myPlaces.getJSONObject(i).getDouble("distance");
+                    }
                     if (myPlaces.getJSONObject(i).getString("media").length()!=0 && myPlaces.getJSONObject(i).getString("media")!= null) {
                         myImageUrl= myPlaces.getJSONObject(i).getString("media");
                     }
@@ -86,7 +103,7 @@ public class DisplayPOIActivity extends ListActivity {
                         myImageUrl = "https://static.thenounproject.com/png/628760-200.png";
                     }
                     maBibliotheque.add(new Destination(myPlaces.getJSONObject(i).getString("type"),myPlaces.getJSONObject(i).getString("display"),
-                            myPlaces.getJSONObject(i).getString("distance"), myImageUrl));
+                            myDistance, myImageUrl));
                 }
             }
         }catch(JSONException e){

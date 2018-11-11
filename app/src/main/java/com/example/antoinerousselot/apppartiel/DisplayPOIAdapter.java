@@ -46,7 +46,7 @@ public class DisplayPOIAdapter extends BaseAdapter {
             holder.tvType = (TextView) convertView.findViewById(R.id.textView2);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.textView3);
             holder.tvDistance = (TextView) convertView.findViewById(R.id.textView4);
-            holder.iv = (ImageView) convertView.findViewById(R.id.textView4);
+            holder.iv = (ImageView) convertView.findViewById(R.id.imageView2);
             convertView.setTag(holder);
         } else {
             Log.v("test", "convertView is not null");
@@ -57,7 +57,7 @@ public class DisplayPOIAdapter extends BaseAdapter {
         Destination destination = biblio.get(position);
         holder.tvType.setText(destination.getType());
         holder.tvTitle.setText(destination.getTitle());
-        holder.tvDistance.setText(destination.getDistance());
+        holder.tvDistance.setText(destination.getDistance().toString());
         Picasso.get().load(destination.getImageURL()).into(holder.iv);
 
         return convertView;
