@@ -20,6 +20,8 @@ import java.util.List;
 
 public class DisplayPOIAdapter extends BaseAdapter {
     List<Destination> biblio;
+    private static final int itemViewPaire = 0;
+    private static final int itemViewImpaire = 1;
 
     LayoutInflater inflater;
 
@@ -42,7 +44,12 @@ public class DisplayPOIAdapter extends BaseAdapter {
         if (convertView==null){
             Log.v("test","convertView is Null");
             holder=new ViewHolder();
-            convertView = inflater.inflate(R.layout.layoutitem,null);
+            if (getItemViewType(position)==itemViewImpaire){
+                convertView = inflater.inflate(R.layout.layoutitem, null);
+            }
+            else {
+                convertView = inflater.inflate(R.layout.layoutitem2, null);
+            }
             holder.tvType = (TextView) convertView.findViewById(R.id.textView2);
             holder.tvTitle = (TextView) convertView.findViewById(R.id.textView3);
             holder.tvDistance = (TextView) convertView.findViewById(R.id.textView4);
@@ -64,6 +71,13 @@ public class DisplayPOIAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position%2==0){
+            return itemViewPaire;
+        }
+        else return itemViewImpaire;
+    }
     @Override
     public int getCount() { return biblio.size();
     }
