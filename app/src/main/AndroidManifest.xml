@@ -36,6 +36,10 @@
         <activity
             android:name=".RequestPOI"
             android:label="@string/title_activity_request_poi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ZoomImageActivity"
+            android:label="@string/title_activity_zoom_image"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

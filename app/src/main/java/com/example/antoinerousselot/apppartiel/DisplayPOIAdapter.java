@@ -57,7 +57,8 @@ public class DisplayPOIAdapter extends BaseAdapter {
         Destination destination = biblio.get(position);
         holder.tvType.setText(destination.getType());
         holder.tvTitle.setText(destination.getTitle());
-        holder.tvDistance.setText(destination.getDistance().toString());
+        String myDistance = String.format("%.2f", destination.getDistance());
+        holder.tvDistance.setText(myDistance.toString()+" km");
         Picasso.get().load(destination.getImageURL()).into(holder.iv);
 
         return convertView;

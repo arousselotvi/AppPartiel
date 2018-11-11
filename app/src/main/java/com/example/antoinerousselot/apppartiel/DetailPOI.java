@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -98,20 +99,60 @@ public class DetailPOI extends AppCompatActivity {
                 JSONObject myMedia=null;
                 try {
                     myMedia=myImages.getJSONObject(i);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 try {
                     Picasso.get().load(myMedia.getString("url")).into(myImageViews.get(i));
+                    final JSONObject finalMyMedia = myMedia;
+                    final JSONObject finalMyObject = myObject;
+                    myImageViews.get(i).setOnClickListener(new View.OnClickListener() {
+                        //add on click listener
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                actionOnClick(finalMyMedia.getString("url"), finalMyObject.getString("name"));
+                            } catch (JSONException e) {
+                                Toast.makeText(getApplicationContext(),"Unable to load resource",Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
             else {
                 Picasso.get().load("http://chittagongit.com//images/picture-unavailable-icon/picture-unavailable-icon-11.jpg").into(myImageViews.get(i));
+                final JSONObject finalMyObject1 = myObject;
+                myImageViews.get(i).setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        try {
+                            actionOnClick("http://chittagongit.com//images/picture-unavailable-icon/picture-unavailable-icon-11.jpg", finalMyObject1.getString("name"));
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(),"Unable to load resource",Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                    });
+
             }
         }
 
+    }
+
+
+    protected void actionOnClick(String url, String title){
+
+        Bundle bundle=new Bundle();
+        bundle.putString("title",title);
+        bundle.putString("image",url);
+        Intent i= new Intent(DetailPOI.this,ZoomImageActivity.class);
+        i.putExtras(bundle);
+
+        startActivity(i);
     }
 
 }

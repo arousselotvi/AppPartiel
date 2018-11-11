@@ -6,4 +6,5 @@
     <string name="title_activity_detail_poi">DetailPOI</string>
     <string name="title_activity_webview">WebviewActivity</string>
     <string name="title_activity_request_poi">RequestPOI</string>
+    <string name="title_activity_zoom_image">ZoomImageActivity</string>
 </resources>
