@@ -24,6 +24,7 @@ public class RequestPOI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         String myId=bundle.getString("myId");
+        final String initialResponse=bundle.getString("responseInitial");
         setContentView(R.layout.activity_request_poi);
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://voyage2.corellis.eu/api/v2/poi?id=" + myId;
@@ -34,6 +35,7 @@ public class RequestPOI extends AppCompatActivity {
                         Log.i(TAG,response.toString());
                         Bundle bundle2 =new Bundle();
                         bundle2.putString("response",response.toString());
+                        bundle2.putString("initialResponse",initialResponse.toString());
 
                         Intent monIntent= new Intent(RequestPOI.this,DetailPOI.class);
                         monIntent.putExtras(bundle2);

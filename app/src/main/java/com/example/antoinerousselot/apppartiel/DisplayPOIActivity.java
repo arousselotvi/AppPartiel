@@ -38,7 +38,9 @@ public class DisplayPOIActivity extends ListActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        String response=bundle.getString("response");
+
+        final String response=bundle.getString("response");
+
         Log.i(TAG,response.toString());
         try {
             JSONObject myJson= new JSONObject(response.toString());
@@ -59,7 +61,7 @@ public class DisplayPOIActivity extends ListActivity {
                     String text = tv.getText().toString();
                     String title= tv2.getText().toString();
                     try {
-                        actionOnClick(text,myPlaces,title);
+                        actionOnClick(text,myPlaces,title,response);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -142,10 +144,13 @@ public class DisplayPOIActivity extends ListActivity {
             }
         }
 
-        private void actionOnClick(String text,JSONArray myPlaces,String title) throws JSONException {
+        private void actionOnClick(String text,JSONArray myPlaces,String title,String response) throws JSONException {
             if (text.contains("POI")){
+                Bundle bundleInitial =new Bundle();
+
                 Bundle bundle =new Bundle();
                 bundle.putString("myId",getIdPOI(myPlaces,title));
+                bundle.putString("responseInitial",response.toString());
                 Intent monIntent= new Intent(DisplayPOIActivity.this,RequestPOI.class);
                 monIntent.putExtras(bundle);
                 startActivity(monIntent);
